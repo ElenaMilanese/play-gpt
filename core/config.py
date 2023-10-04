@@ -13,12 +13,11 @@ class GptConfig(BaseSettings):
     api_key: str
 
 class SpotifyConfig(BaseSettings):
-    prompt_input_variables: List | str
-    prompt_path: str
-    playlist_name_path: str
-    temperature: int
-    model: str
-    api_key: str
+    client_id: str 
+    client_secret: str
+    redirect_uri: str
+    show_dialog: bool
+    scope: str
 
 class GeneralConfig(BaseSettings):
     gpt_config: GptConfig

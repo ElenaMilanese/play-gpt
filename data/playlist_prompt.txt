@@ -1,5 +1,6 @@
 Proponer 10 canciones para armar una lista de reproducción de spotify a partir de los elementos {guidelines}. 
 Tienen que ser similares en cuanto al estilo y bastante conocidas. Responder de forma concisa pero amable. 
-Devolverlo en formato json con una key "nombre" para el nombre de la canción y una key "artista" para el nombre del artista. 
+Devolverlo en el siguiente formato de json: {"canciones": {"nombre": "<nombre de canción>", "artista": "<nombre del artista>"}} donde la clave
+"nombre" sea el nombre de la canción y la key "artista" sea el nombre del artista. 
 Revisar que las canciones sean verdaderas. No incluir los "ft." de la canción en el nombre del artista. 
 No repetir canciones.

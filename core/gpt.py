@@ -3,7 +3,7 @@ from langchain.chat_models import ChatOpenAI
 from langchain.chains import LLMChain
 import os
 from utils import load_txt
-from config import Config
+from config import GptConfig
 import json
 from typing import Callable
 
@@ -12,11 +12,11 @@ api_key = os.environ.get("OPENAI_API_KEY")
 
 playlist_guidelines = ""
 
-class GPTPlaylist():
+class GPTPlaylist:
 
     def __init__(
             self, 
-            config:Config, 
+            config:GptConfig, 
             prompt_template:PromptTemplate, 
             llm:ChatOpenAI, 
             chain:LLMChain
@@ -31,8 +31,9 @@ class GPTPlaylist():
         self.chain = chain
 
     def _init_chain(
+            self,
             template:str
-            ) -> Callable:
+            ) -> Callable[[str], LLMChain]:
         """
         #TODO: Pasar acá todos los parámetros de inicialización relacionados al chain, quizás
         """
@@ -46,17 +47,19 @@ class GPTPlaylist():
             openai_api_key=self.config.api_key
         )
         chain = self.chain(
-            llm=self.llm, 
-            prompt=template
+            llm=llm, 
+            prompt=prompt_template
         )
         return chain
 
-    def generate_playlist():
+    def generate_playlist(self):
         playlist = json.loads(self._init_chain(self.prompt).run(self.input_variable))
+        return playlist
 
 
-    def generate_playlist_name():
+    def generate_playlist_name(self):
         name = self._init_chain(self.playlist_name).run(self.input_variable)
+        return name
 
 
 
