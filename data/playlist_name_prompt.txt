@@ -1,0 +1,1 @@
+Escribir un nombre de lista de spotify de una, dos o tres palabras basada en este input {guidelines} y siendo imaginativo. No ponerle comillas al nombre.

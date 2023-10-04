@@ -1,0 +1,12 @@
+{
+    "gpt": {
+        "prompt_input_variables" : "guidelines",
+        "playlist_prompt_path" : "data/playlist_prompt.txt",
+        "playlist_name_path": "data/playlist_name_prompt.txt",
+        "temperature": 0,
+        "model": "gpt-3.5-turbo"
+    },
+    "spotify": {
+
+    }
+}
