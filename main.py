@@ -8,15 +8,6 @@ from spotipy.oauth2 import SpotifyClientCredentials, SpotifyOAuth
 import json
 import re
 
-
-def erase_diacritics(text:str):
-    """ Removes diacritical marks """
-    return text.translate(str.maketrans('áéíóúüÁÉÍÓÚÜàèìòùÀÈÌÒÙ','aeiouuAEIOUUaeiouAEIOU'))
-
-def remove_punctuation(text:str):
-    """ Removes punctuation """
-    return re.sub(f"[{punctuation}'¿¡‘’]", '', text)
-
 if __name__ == '__main__':
     print("Bienvenide a PlayGPT!\n")
 
