@@ -1,0 +1,1 @@
+Escribir un nombre de lista de reproducción de tres palabras basada en este input {guidelines} y siendo muy imaginativo. No encerrar en comillas el nombre.

@@ -1,0 +1,1 @@
+DEFAULT_CONFIG = "play_gpt/config.json"

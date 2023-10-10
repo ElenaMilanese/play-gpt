@@ -26,7 +26,6 @@ def erase_punctuation(text:str):
     return re.sub(f"[{punctuation}'¿¡‘’]", '', text)
 
 def process_string(text:str, fn_sequence:List) -> str:
-    """Normalizes a string by applying a series of functions sequentially."""
-    intermediate_results = map(lambda f: f(text), fn_sequence)
-    final_result = reduce(lambda text, result: result(text), intermediate_results)
+    """Processes a string by applying a series of functions sequentially."""
+    final_result = reduce(lambda x, func: func(x), fn_sequence, text)
     return final_result

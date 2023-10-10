@@ -4,13 +4,15 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-ply_gpt = {editable = true, path = "."}
+play_gpt = {editable = true, path = "."}
 langchain = "*"
 openai = "*"
 jupyterlab = "*"
 spotipy = "*"
 pydantic = "*"
 python-dotenv = "*"
+pydantic-settings = "*"
+pytest = "*"
 
 [dev-packages]
 

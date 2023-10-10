@@ -2,7 +2,7 @@
 from setuptools import setup
 
 setup(
-    name="play-gpt",
+    name="play_gpt",
     version="0.1.0",
-    packages=["play-gpt"]
+    packages=["play_gpt"]
 )

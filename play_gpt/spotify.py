@@ -14,18 +14,19 @@ class SpotifyPlaylistCreator:
         config:SpotifyConfig=SpotifyConfig
         ) -> None:
     
-        self.config = config()
+        self.config_secrets = config()
+        self.config_parameters = config.load_json_parameters()
         self.spotify_client_credentials= spotify_client_credentials(
-            client_id=self.config.client_id, 
-            client_secret=self.config.client_secret
+            client_id=self.config_secrets.client_id, 
+            client_secret=self.config_secrets.client_secret
         )
         self.sp = spotify(
             auth_manager=spotify_oauth(
-                client_id=self.config.client_id, 
-                client_secret=self.config.client_secret,
-                redirect_uri=self.config.redirect_uri,
-                show_dialog=self.config.show_dialog,
-                scope=self.config.scope
+                client_id=self.config_secrets.client_id, 
+                client_secret=self.config_secrets.client_secret,
+                redirect_uri=self.config_parameters["redirect_uri"],
+                show_dialog=self.config_parameters["show_dialog"],
+                scope=self.config_parameters["scope"]
             )
         )
         
@@ -39,16 +40,21 @@ class SpotifyPlaylistCreator:
                 result = self.sp.search(q=f'track:{norm_name} artist:{norm_artist}', type='track')
                 uri = result['tracks']['items'][0]['uri']
                 song_list.append(uri)
-            except:
+            except Exception as e:
+                result = self.sp.search(q=norm_name, type='track')
+                uri = result['tracks']['items'][0]['uri']
+                song_list.append(uri)
+            except Exception as e:
+                print(e, "\n")
                 print(f'La canción {song["nombre"]} de {song["artista"]} no existe en spotify, quizás flashó gpt :P')
         songs_unique = list(set(song_list))
         return songs_unique
 
 
     def create_playlist(self, song_list:List[str], playlist_name:str):
-        """Create a playlist in Spotify with a list of songs and names it."""
+        """Create a playlist in Spotify with a list of songs"""
         user_id = self.sp.current_user()["id"]
         playlist = self.sp.user_playlist_create(user=user_id, name=playlist_name, public=False)
-        result = self.sp.playlist_add_items(playlist_id=playlist["id"], items=song_list)
+        playlist_id = self.sp.playlist_add_items(playlist_id=playlist["id"], items=song_list)
         print(f"Se creó la lista de reproducción {playlist_name}.")
-        return result ## no sé si va a returnear algo
+        return playlist_id 

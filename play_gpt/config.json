@@ -1,0 +1,17 @@
+{
+    "gpt": {
+        "prompt_input_guidelines" : "guidelines",
+        "prompt_input_json_schema" : "json_schema",
+        "json_schema": "{'canciones': [{'nombre': '<nombre de canción>', 'artista': '<nombre del artista>'}]}",
+        "playlist_prompt_path" : "prompts/playlist_prompt.txt",
+        "playlist_name_path": "prompts/playlist_name_prompt.txt",
+        "temperature": 0,
+        "model": "gpt-3.5-turbo"
+    },
+    "spotify": {
+        "redirect_uri": "http://example.com",
+        "show_dialog": true,
+        "scope":"playlist-modify-private"
+
+    }
+}

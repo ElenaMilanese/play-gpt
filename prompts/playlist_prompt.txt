@@ -1,0 +1,6 @@
+"""Proponer 20 canciones para armar una lista de reproduccion de spotify a partir de los elementos {{guidelines}}. 
+Tienen que ser similares en cuanto al estilo y bastante conocidas.
+Devolverlo en el siguiente formato de json: {{json_schema}} donde la clave
+"nombre" sea el nombre de la cancion y la key "artista" sea el nombre del artista. 
+Revisar que las canciones sean verdaderas. No incluir los "ft." de la cancion en el nombre del artista. 
+No repetir canciones."""
