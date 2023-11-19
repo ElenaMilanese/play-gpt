@@ -1,6 +1,6 @@
 # play-gpt
 
-Play-gpt regerates a playlist from some keywords and saves it to your Spotify account.
+Play-gpt generates a playlist from the guidelines you provide and saves it to your Spotify account.
 
 ## Installation from repository
 
