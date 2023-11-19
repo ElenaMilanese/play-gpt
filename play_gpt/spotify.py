@@ -14,23 +14,22 @@ class SpotifyPlaylistCreator:
         config:SpotifyConfig=SpotifyConfig
         ) -> None:
     
-        self.config_secrets = config()
-        self.config_parameters = config.load_json_parameters()
+        self.config = config()
         self.spotify_client_credentials= spotify_client_credentials(
-            client_id=self.config_secrets.client_id, 
-            client_secret=self.config_secrets.client_secret
+            client_id=self.config.client_id, 
+            client_secret=self.config.client_secret
         )
         self.sp = spotify(
             auth_manager=spotify_oauth(
-                client_id=self.config_secrets.client_id, 
-                client_secret=self.config_secrets.client_secret,
-                redirect_uri=self.config_parameters["redirect_uri"],
-                show_dialog=self.config_parameters["show_dialog"],
-                scope=self.config_parameters["scope"]
+                client_id=self.config.client_id, 
+                client_secret=self.config.client_secret,
+                redirect_uri=self.config.redirect_uri,
+                show_dialog=self.config.show_dialog,
+                scope=self.config.scope
             )
         )
         
-    def search_songs(self, songs:Dict[str, Dict[str, str]]) -> List:
+    def find_songs(self, songs:Dict[str, Dict[str, str]]) -> List:
         """Searches for the songs in Spotify."""
         song_list = []
         for song in songs["canciones"]:

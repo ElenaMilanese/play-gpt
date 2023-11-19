@@ -18,12 +18,11 @@ class GPTPlaylist:
             config:GptConfig=GptConfig
             ) -> None:
         
-        self.config_secrets = config()
-        self.config_parameters = config.load_json_parameters()
-        self.input_guidelines = self.config_parameters["prompt_input_guidelines"]
-        self.input_json_schema = self.config_parameters["prompt_input_json_schema"]
-        self.prompt = load_txt(self.config_parameters["playlist_prompt_path"])
-        self.playlist_name = load_txt(self.config_parameters["playlist_name_path"])
+        self.config= config()
+        self.input_guidelines = self.config.prompt_input_guidelines
+        self.input_json_schema = self.config.prompt_input_json_schema
+        self.prompt = load_txt(self.config.playlist_prompt_path)
+        self.playlist_name = load_txt(self.config.playlist_name_path)
         self.prompt_template = prompt_template
         self.llm = llm
         self.chain = chain
@@ -31,20 +30,18 @@ class GPTPlaylist:
     def _init_chain(
             self,
             template:str,
-            input_variables:List
             ) -> Callable[[str], LLMChain]:
         """
         #TODO: Pasar acá todos los parámetros de inicialización relacionados al chain, quizás
         """
         prompt_template = self.prompt_template.from_template(            
-            #input_variables=input_variables, #, self.input_json_schema
             template=template,
             template_format="jinja2"
         )
         llm = self.llm(
-            temperature=self.config_parameters["temperature"], 
-            model_name=self.config_parameters["model"], 
-            openai_api_key=self.config_secrets.api_key
+            temperature=self.config.temperature, 
+            model_name=self.config.model, 
+            openai_api_key=self.config.api_key
         )
         chain = self.chain(
             llm=llm, 

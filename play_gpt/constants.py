@@ -1,1 +1,1 @@
-DEFAULT_CONFIG = "play_gpt/config.json"
+DEFAULT_CONFIG = "play_gpt/configs/config.json"
