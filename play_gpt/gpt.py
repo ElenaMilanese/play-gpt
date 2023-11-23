@@ -4,7 +4,7 @@ from langchain.chains import LLMChain
 from utils import load_txt
 from config import GptConfig
 import json
-from typing import Callable, List
+from typing import Callable, List, Dict
 
 playlist_guidelines = ""
 
@@ -49,7 +49,7 @@ class GPTPlaylist:
         )
         return chain
 
-    def generate_playlist(self, input_guideline):
+    def generate_playlist(self, input_guideline:str) -> Dict[str, Dict[str, str]]:
         playlist = json.loads(
             self._init_chain(
             template=self.prompt, 
@@ -58,12 +58,12 @@ class GPTPlaylist:
                 {"guidelines":input_guideline, "json_schema":self.input_json_schema}
             )
             )
-        return playlist
+        return playlist 
 
 
-    def generate_playlist_name(self, input_guideline):
+    def generate_playlist_name(self, input_guideline:str) -> str:
         name = self._init_chain(template=self.playlist_name, input_variables=[self.input_guidelines]).run({"guidelines:":input_guideline})
-        return name
+        return name 
 
 
 
